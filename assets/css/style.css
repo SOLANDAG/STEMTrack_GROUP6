@@ -1,0 +1,134 @@
+/* GENERAL PAGE SETTINGS */
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+height:100vh;
+background:#0f172a;
+}
+
+/* LOGIN BACKGROUND */
+
+.login-bg{
+background-image:url("../images/LOGIN.jpg");
+background-size:contain;
+background-position:right center;
+background-repeat:no-repeat;
+background-color:#81A1F6;
+}
+
+.register-bg{
+background-image:url("../images/REGISTER.jpg");
+background-size:contain;
+background-position:right center;
+background-repeat:no-repeat;
+background-color:#81A1F6;
+}
+
+/* CONTAINER FOR AUTH PAGES */
+
+.auth-container{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:flex-start;
+padding-left:120px;
+}
+
+/* GLASS LOGIN / REGISTER BOX */
+
+.auth-box{
+
+width:420px;
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 20px 45px rgba(0,0,0,0.35);
+
+}
+
+/* TITLE */
+
+.auth-box h2{
+margin-bottom:20px;
+color:#ffffff;
+}
+
+/* INPUT FIELDS */
+
+.auth-box input,
+.auth-box select{
+
+width:100%;
+padding:12px;
+margin-bottom:15px;
+
+border:none;
+border-radius:10px;
+
+outline:none;
+
+}
+
+/* LOGIN BUTTON */
+
+.auth-box button{
+
+width:100%;
+padding:12px;
+
+border:none;
+border-radius:10px;
+
+background:#5b6cff;
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.auth-box button:hover{
+background:#3f50ff;
+}
+
+/* MESSAGE TEXT */
+
+.success{
+color:#00ff9d;
+margin-bottom:15px;
+}
+
+.error{
+color:#ff6b6b;
+margin-bottom:15px;
+}
+
+/* REGISTER / LOGIN SWITCH */
+
+.switch{
+margin-top:15px;
+color:white;
+}
+
+.switch a{
+color:#ffd369;
+text-decoration:none;
+font-weight:bold;
+}
+
+.switch a:hover{
+text-decoration:underline;
+}
