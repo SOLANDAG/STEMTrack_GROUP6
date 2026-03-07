@@ -1,16 +1,19 @@
-/* GENERAL PAGE SETTINGS */
+*{
+box-sizing:border-box;
+font-family:'Fredoka', sans-serif;
+}
+
+/* PAGE */
 
 body{
 margin:0;
-font-family:Arial, Helvetica, sans-serif;
 height:100vh;
-background:#0f172a;
 }
 
-/* LOGIN BACKGROUND */
+/* BACKGROUNDS */
 
 .login-bg{
-background-image:url("../images/LOGIN.jpg");
+background:url("../images/LOGIN.jpg");
 background-size:contain;
 background-position:right center;
 background-repeat:no-repeat;
@@ -18,117 +21,338 @@ background-color:#81A1F6;
 }
 
 .register-bg{
-background-image:url("../images/REGISTER.jpg");
+background:url("../images/REGISTER.jpg");
 background-size:contain;
 background-position:right center;
 background-repeat:no-repeat;
 background-color:#81A1F6;
 }
 
-/* CONTAINER FOR AUTH PAGES */
+/* AUTH CONTAINER */
 
 .auth-container{
 height:100vh;
 display:flex;
 align-items:center;
-justify-content:flex-start;
-padding-left:120px;
 }
 
-/* GLASS LOGIN / REGISTER BOX */
+/* POSITIONS */
+
+.login-layout{
+padding-left:160px;
+}
+
+.register-layout{
+padding-left:70px;
+}
+
+/* AUTH BOX */
 
 .auth-box{
 
-width:420px;
+background:rgba(255,255,255,0.18);
 
-background:rgba(255,255,255,0.15);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
 
-backdrop-filter:blur(14px);
--webkit-backdrop-filter:blur(14px);
-
-border:1px solid rgba(255,255,255,0.25);
+border:1px solid rgba(255,255,255,0.35);
 
 padding:40px;
 
-border-radius:20px;
+border-radius:22px;
 
-box-shadow:0 20px 45px rgba(0,0,0,0.35);
+box-shadow:0 25px 60px rgba(0,0,0,0.35);
+}
 
+.login-box{
+width:420px;
+}
+
+.register-box{
+width:750px;
+min-height:400px;
 }
 
 /* TITLE */
 
 .auth-box h2{
-margin-bottom:20px;
-color:#ffffff;
+color:white;
+margin-bottom:25px;
 }
 
-/* INPUT FIELDS */
+/* INPUTS */
 
-.auth-box input,
-.auth-box select{
+.auth-box input{
 
 width:100%;
-padding:12px;
-margin-bottom:15px;
+padding:14px;
+margin-bottom:14px;
 
 border:none;
-border-radius:10px;
 
-outline:none;
+border-radius:12px;
 
+background:rgba(255,255,255,0.92);
 }
 
-/* LOGIN BUTTON */
+/* NAME ROW */
 
-.auth-box button{
+.name-row{
+display:flex;
+gap:12px;
+}
 
-width:100%;
+.first-name{flex:2;}
+.middle-name{flex:1;}
+.last-name{flex:2;}
+
+/* DIVIDER */
+
+.divider{
+height:1px;
+background:rgba(255,255,255,0.35);
+margin:18px 0;
+}
+
+/* ROLE TITLE */
+
+.role-title{
+color:white;
+margin-bottom:10px;
+}
+
+/* ROLE BUTTONS */
+
+.role-buttons{
+display:flex;
+gap:10px;
+}
+
+.role-btn{
+
+flex:1;
+
 padding:12px;
 
 border:none;
+
 border-radius:10px;
 
 background:#5b6cff;
+
 color:white;
 
-font-weight:bold;
+font-weight:600;
 
 cursor:pointer;
 
-transition:0.3s;
+opacity:0.6;
 
+transition:0.2s;
 }
 
-.auth-box button:hover{
-background:#3f50ff;
+.role-btn.active{
+
+opacity:1;
+
+background:linear-gradient(135deg,#5b6cff,#3f50ff);
+
+box-shadow:0 0 10px rgba(255,255,255,0.6);
 }
 
-/* MESSAGE TEXT */
+/* GRADE SECTION */
 
-.success{
-color:#00ff9d;
-margin-bottom:15px;
+.grade-section{
+display:none;
+margin-top:10px;
 }
 
-.error{
-color:#ff6b6b;
-margin-bottom:15px;
+.grade-buttons{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
 }
 
-/* REGISTER / LOGIN SWITCH */
+/* GRADE BUTTON */
+
+.grade-btn{
+
+flex:1;
+
+padding:12px;
+
+border:none;
+
+border-radius:10px;
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+opacity:0.75;
+
+transition:0.2s;
+}
+
+/* COLORS */
+
+.grade1{background:#ff5a5a;}
+.grade2{background:#ff9f43;}
+.grade3{background:#feca57;}
+.grade4{background:#1dd1a1;}
+.grade11{background:#54a0ff;}
+.grade12{background:#d754ff;}
+
+.grade-btn.active{
+
+opacity:1;
+
+transform:scale(1.05);
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.6),
+0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* MAIN BUTTON */
+
+.main-btn{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:12px;
+
+background:linear-gradient(135deg,#5b6cff,#3f50ff);
+
+color:white;
+
+font-weight:600;
+
+text-transform:uppercase;
+
+letter-spacing:1px;
+
+cursor:pointer;
+
+box-shadow:
+0 8px 20px rgba(0,0,0,0.25),
+inset 0 0 6px rgba(255,255,255,0.4);
+
+transition:0.25s;
+}
+
+.main-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 12px 25px rgba(0,0,0,0.35),
+inset 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* MESSAGES */
+
+.success{color:#00ff9d;}
+.error{color:#ff6b6b;}
+
+/* SWITCH */
 
 .switch{
-margin-top:15px;
 color:white;
+margin-top:18px;
 }
 
 .switch a{
 color:#ffd369;
 text-decoration:none;
-font-weight:bold;
+font-weight:500;
 }
 
-.switch a:hover{
-text-decoration:underline;
+/* BUTTON POP ANIMATION */
+
+@keyframes buttonPop {
+
+0%{
+transform:scale(1);
 }
+
+50%{
+transform:scale(1.08);
+}
+
+100%{
+transform:scale(1.05);
+}
+
+}
+
+/* ROLE ACTIVE EFFECT */
+
+.role-btn.active{
+
+opacity:1;
+
+background:linear-gradient(135deg,#5b6cff,#3f50ff);
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.6),
+0 6px 15px rgba(0,0,0,0.3);
+
+animation:buttonPop 0.25s ease;
+}
+
+/* GRADE ACTIVE EFFECT */
+
+.grade-btn.active{
+
+opacity:1;
+
+transform:scale(1.05);
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.7),
+0 6px 15px rgba(0,0,0,0.3);
+
+animation:buttonPop 0.25s ease;
+}
+
+.role-btn:hover,
+.grade-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 0 10px rgba(255,255,255,0.4),
+0 6px 15px rgba(0,0,0,0.25);
+}
+
+.input-field{
+
+width:100%;
+
+padding:14px 18px;
+
+border-radius:14px;
+border:none;
+
+background:rgba(255,255,255,0.75);
+
+font-family:'Fredoka', sans-serif;
+font-size:15px;
+
+outline:none;
+
+box-shadow:
+inset 0 2px 4px rgba(0,0,0,0.1),
+0 6px 15px rgba(0,0,0,0.08);
+
+margin-bottom:12px;
+
+}
+
