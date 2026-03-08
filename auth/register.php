@@ -15,9 +15,18 @@ $confirm=$_POST['confirm_password'];
 $role=$_POST['role'];
 $grade=$_POST['grade'];
 
-if($password!=$confirm){
+if(empty($role)){
+$message="Please select a role";
+}
+
+elseif($role=="student" && empty($grade)){
+$message="Students must select a grade level";
+}
+
+elseif($password!=$confirm){
 $message="Passwords do not match";
 }
+
 else{
 
 // GENERATE SCHOOL ID
@@ -61,9 +70,9 @@ $message="Error creating account";
 
 <link rel="stylesheet" href="../assets/css/style.css">
 
-</head>
-
 <script src="../assets/js/auth.js"></script>
+
+</head>
 
 <body class="register-bg">
 
@@ -125,7 +134,19 @@ $message="Error creating account";
 
 <input type="email" name="email" placeholder="Email" required>
 
-<input type="password" name="password" placeholder="Password" required>
+<input type="password" id="password" name="password" placeholder="Password" required>
+
+<div id="password-strength" style="display:none;">
+
+<div class="strength-bar">
+<div id="strength-fill"></div>
+</div>
+
+<p id="strength-text" style="font-size:12px;margin-top:6px;color:white;">
+Use 6+ characters, one capital letter, and one symbol.
+</p>
+
+</div>
 
 <input type="password" name="confirm_password" placeholder="Confirm Password" required>
 
@@ -171,6 +192,78 @@ btn.classList.add("active");
 document.getElementById("grade").value = btn.innerText;
 
 }
+
+/* PASSWORD STRENGTH CHECK */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const passwordInput = document.getElementById("password");
+const strengthFill = document.getElementById("strength-fill");
+const strengthText = document.getElementById("strength-text");
+const strengthBox = document.getElementById("password-strength");
+
+if(!passwordInput) return;
+
+passwordInput.addEventListener("input", function(){
+
+let password = passwordInput.value;
+
+if(password.length === 0){
+strengthBox.style.display = "none";
+strengthFill.style.width = "0%";
+return;
+}
+
+strengthBox.style.display = "block";
+
+/* RULES */
+
+let hasLength = password.length >= 6;
+let hasUpper = /[A-Z]/.test(password);
+let lowerCount = (password.match(/[a-z]/g) || []).length;
+let numberCount = (password.match(/[0-9]/g) || []).length;
+let hasSpecial = /[^A-Za-z0-9]/.test(password);
+
+let hasLower = lowerCount >= 3;
+let hasNumbers = numberCount >= 2;
+
+/* SCORE */
+
+let score = 0;
+
+if(hasLength) score++;
+if(hasUpper) score++;
+if(hasLower) score++;
+if(hasNumbers) score++;
+if(hasSpecial) score++;
+
+/* STRENGTH BAR */
+
+if(score <= 2){
+
+strengthFill.style.width = "30%";
+strengthFill.style.background = "red";
+strengthText.innerText = "Weak password";
+
+}
+else if(score <= 4){
+
+strengthFill.style.width = "70%";
+strengthFill.style.background = "orange";
+strengthText.innerText = "Medium password";
+
+}
+else{
+
+strengthFill.style.width = "100%";
+strengthFill.style.background = "green";
+strengthText.innerText = "Strong password";
+
+}
+
+});
+
+});
 
 </script>
 

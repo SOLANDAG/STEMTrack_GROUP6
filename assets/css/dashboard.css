@@ -508,3 +508,67 @@ margin-top:15px;
   background:none !important;
   box-shadow:none !important;
 }
+
+/* Monitor table improvements */
+
+.history-table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+.history-table th{
+
+background:#5b6cff;
+color:white;
+
+padding:12px;
+text-align:center;
+
+font-weight:500;
+
+}
+
+.history-table td{
+
+padding:12px;
+text-align:center;
+
+border-bottom:1px solid #eee;
+
+}
+
+/* zebra rows */
+
+.history-table tr:nth-child(even){
+
+background:#f7f8ff;
+
+}
+
+/* hover highlight */
+
+.history-table tr:hover{
+
+background:#e9ecff;
+
+transition:0.2s;
+
+}
+
+/* Export button (small version) */
+
+.export-btn{
+
+display:inline-block;
+width:auto;
+
+padding:10px 20px;
+
+border-radius:12px;
+
+text-decoration:none; /* removes underline */
+
+font-size:14px;
+
+}

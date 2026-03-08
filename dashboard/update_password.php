@@ -13,7 +13,7 @@ $sql="SELECT password FROM users WHERE user_id='$user_id'";
 $result=mysqli_query($conn,$sql);
 $user=mysqli_fetch_assoc($result);
 
-if($current!=$user['password']){
+if(!password_verify($current,$user['password'])){
 echo "Current password incorrect";
 exit();
 }
@@ -23,7 +23,9 @@ echo "Passwords do not match";
 exit();
 }
 
-$update="UPDATE users SET password='$new' WHERE user_id='$user_id'";
+$new_hash = password_hash($new, PASSWORD_DEFAULT);
+
+$update="UPDATE users SET password='$new_hash' WHERE user_id='$user_id'";
 mysqli_query($conn,$update);
 
 header("Location: profile.php");

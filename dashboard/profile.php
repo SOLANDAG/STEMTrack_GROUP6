@@ -86,7 +86,15 @@ $user=mysqli_fetch_assoc($result);
 
 <input class="input-field" type="password" name="current_password" placeholder="Current Password" required>
 
-<input class="input-field" type="password" name="new_password" placeholder="New Password" required>
+<input class="input-field" type="password" id="password" name="new_password" placeholder="New Password" required>
+
+<div class="strength-bar">
+<div id="strength-fill"></div>
+</div>
+
+<p id="strength-text" style="font-size:13px;margin-top:5px;color:#555;">
+Use uppercase letters, numbers, and special characters.
+</p>
 
 <input class="input-field" type="password" name="confirm_password" placeholder="Confirm Password" required>
 

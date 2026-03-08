@@ -14,22 +14,31 @@ echo "Access denied";
 exit();
 }
 
+$today = date("Y-m-d");
+
 $search = $_GET['search'] ?? '';
 
-$sql = "SELECT users.first_name, users.last_name, users.grade,
-attendance.attendance_date,
+$sql = "SELECT 
+users.user_id,
+users.first_name,
+users.last_name,
+users.grade,
 attendance.time_in,
 attendance.time_out,
 attendance.total_hours
-FROM attendance
-JOIN users ON attendance.user_id = users.user_id";
+FROM users
+LEFT JOIN attendance 
+ON users.user_id = attendance.user_id
+AND attendance.attendance_date = '$today'
+WHERE users.role = 'student'
+";
 
 if($search != ''){
-$sql .= " WHERE users.first_name LIKE '%$search%' 
-OR users.last_name LIKE '%$search%'";
+$sql .= " AND (users.first_name LIKE '%$search%' 
+OR users.last_name LIKE '%$search%')";
 }
 
-$sql .= " ORDER BY attendance.attendance_date DESC";
+$sql .= " ORDER BY users.last_name ASC";
 
 $result = mysqli_query($conn,$sql);
 ?>
@@ -59,6 +68,18 @@ $result = mysqli_query($conn,$sql);
 
 <h2 class="section-title">Student Attendance Monitor</h2>
 
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+
+<span style="font-size:16px;font-weight:500;">
+Date: <?php echo date("F d, Y"); ?>
+</span>
+
+<a href="export_attendance.php" class="main-btn export-btn">
+Export Attendance
+</a>
+
+</div>
+
 <form method="GET" class="search-form">
 
 <input
@@ -78,7 +99,7 @@ value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>"
 <tr>
 <th>Student</th>
 <th>Grade</th>
-<th>Date</th>
+<th>Status</th>
 <th>Time In</th>
 <th>Time Out</th>
 <th>Total Hours</th>
@@ -86,19 +107,36 @@ value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>"
 
 <?php while($row = mysqli_fetch_assoc($result)){ ?>
 
+<?php
+
+$time_in = $row['time_in'];
+$time_out = $row['time_out'];
+
+$status = "❌ NO RECORD";
+
+if($time_in && !$time_out){
+$status = "🟢 TIMED IN";
+}
+
+if($time_in && $time_out){
+$status = "⚪ TIMED OUT";
+}
+
+?>
+
 <tr>
 
 <td><?php echo $row['first_name']." ".$row['last_name']; ?></td>
 
 <td><?php echo $row['grade']; ?></td>
 
-<td><?php echo $row['attendance_date']; ?></td>
+<td><?php echo $status; ?></td>
 
-<td><?php echo $row['time_in']; ?></td>
+<td><?php echo $time_in ?? "-"; ?></td>
 
-<td><?php echo $row['time_out']; ?></td>
+<td><?php echo $time_out ?? "-"; ?></td>
 
-<td><?php echo $row['total_hours']; ?></td>
+<td><?php echo $row['total_hours'] ?? "-"; ?></td>
 
 </tr>
 
@@ -111,6 +149,12 @@ value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>"
 </main>
 
 </div>
+
+<script>
+setTimeout(function(){
+location.reload();
+},10000);
+</script>
 
 </body>
 </html>

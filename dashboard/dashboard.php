@@ -211,6 +211,8 @@ $total_hours = $today_data['total_hours'] ?? 0;
 
                             <h3>Time Out</h3>
 
+                            <p><?php echo $time_out ? $time_out : "--:--"; ?></p>
+
                             <?php if($can_time_out){ ?>
 
                             <form method="POST" action="attendance_action.php">
@@ -220,7 +222,9 @@ $total_hours = $today_data['total_hours'] ?? 0;
 
                             <?php } else { ?>
 
-                            <p style="font-size:14px;color:#777;">Time in first</p>
+                            <p style="font-size:14px;color:#777;">
+                            <?php echo $time_out ? "Already timed out" : "Time in first"; ?>
+                            </p>
 
                             <?php } ?>
 
