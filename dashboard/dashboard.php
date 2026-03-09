@@ -118,6 +118,11 @@ $status = "Completed";
 
 $total_hours = $today_data['total_hours'] ?? 0;
 
+if($time_in && $time_out && $total_hours == 0){
+    $minutes = (strtotime($time_out) - strtotime($time_in)) / 60;
+    $total_hours = round($minutes / 60, 2);
+}
+
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$current_page = basename($_SERVER['PHP_SELF']);
+
 include "../config/database.php";
 
 if(!isset($_SESSION['user_id'])){
