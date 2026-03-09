@@ -66,7 +66,9 @@ $user=mysqli_fetch_assoc($result);
 
 <p><b>Email:</b> <?php echo $user['email']; ?></p>
 
+<?php if($user['role'] == "student"){ ?>
 <p><b>Grade:</b> <?php echo $user['grade']; ?></p>
+<?php } ?>
 
 <p><b>School ID:</b> <?php echo $user['school_id']; ?></p>
 
@@ -81,6 +83,14 @@ $user=mysqli_fetch_assoc($result);
 <div class="card">
 
 <h3>Change Password</h3>
+
+<?php if(isset($_GET['password']) && $_GET['password']=="success"){ ?>
+
+<div class="success-message">
+Password successfully changed!
+</div>
+
+<?php } ?>
 
 <form method="POST" action="update_password.php">
 

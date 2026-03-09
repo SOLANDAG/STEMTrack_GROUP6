@@ -28,4 +28,4 @@ $new_hash = password_hash($new, PASSWORD_DEFAULT);
 $update="UPDATE users SET password='$new_hash' WHERE user_id='$user_id'";
 mysqli_query($conn,$update);
 
-header("Location: profile.php");
+header("Location: profile.php?password=success");

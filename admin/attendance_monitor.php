@@ -136,7 +136,31 @@ $status = "⚪ TIMED OUT";
 
 <td><?php echo $time_out ?? "-"; ?></td>
 
-<td><?php echo $row['total_hours'] ?? "-"; ?></td>
+<td>
+
+<?php
+
+if($time_in && $time_out){
+
+$start = strtotime($time_in);
+$end = strtotime($time_out);
+
+$seconds = $end - $start;
+
+$hours = floor($seconds / 3600);
+$minutes = floor(($seconds % 3600) / 60);
+
+echo $hours . "h " . $minutes . "m";
+
+}else{
+
+echo "-";
+
+}
+
+?>
+
+</td>
 
 </tr>
 

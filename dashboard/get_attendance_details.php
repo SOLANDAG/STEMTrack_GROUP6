@@ -21,6 +21,24 @@ $row = mysqli_fetch_assoc($result);
 
 if($row){
 
+if($row['time_in'] && $row['time_out']){
+
+$start = strtotime($row['time_in']);
+$end = strtotime($row['time_out']);
+
+$seconds = $end - $start;
+
+$hours = floor($seconds / 3600);
+$minutes = floor(($seconds % 3600) / 60);
+
+$row['total_hours'] = $hours . "h " . $minutes . "m";
+
+}else{
+
+$row['total_hours'] = "-";
+
+}
+
 echo json_encode($row);
 
 }else{
